@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint';
 
 export default [
   {
-    ignores: ['dist/**', 'node_modules/**', 'vitest.config.*'],
+    ignores: ['dist/**', 'node_modules/**'],
   },
   ...tseslint.configs.recommended,
   prettierConfig,
@@ -13,7 +13,7 @@ export default [
     settings: {
       'import/resolver': {
         typescript: {
-          project: true,
+          project: ['./tsconfig.json'],
           alwaysTryTypes: true,
         },
         node: true,
@@ -58,10 +58,12 @@ export default [
 
   // Relaxed rules for config files only
   {
-    files: ['vitest.config.ts'],
+    files: ['eslint.config.js', 'vitest.config.ts'],
     rules: {
       'import/no-unresolved': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
+      'import/order': 'off',
+      'import/no-duplicates': 'off',
+      'import/newline-after-import': 'off',
     },
   },
 ];
